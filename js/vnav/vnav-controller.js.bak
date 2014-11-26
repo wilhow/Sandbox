@@ -1,0 +1,21 @@
+
+intrellise.controller("VNavCtrl",function($scope, $element, $attrs){
+	console.log("in VNavCtrl");
+	return "<div class='box'>This is a proper computed Nav</div>" 
+})
+
+intrellise.directive("vnav",function(){
+	return {
+	  restrict: "E",
+	  scope: {},
+	  require: "VNavCtrl",
+	  controller: function($scope,$element,$attrs){
+		  console.log("el:ctrl:foo:"+$attrs.foo);
+		  $element.html("<div class='box'>Computed Navi</div>");
+		},
+	  link: function(scope,element,attrs){
+		  console.log("el:link:foo:"+attrs.foo);
+		  element.html("<div class='box'>Computer After Navi</div>");
+	  }
+	};
+})

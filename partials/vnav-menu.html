@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="A showcase of problems once hard or impossible to solve with CSS alone, now made trivially easy with Flexbox.">
+    <title>Basic layout responsive</title>
+    <!-- Topcoat io -->
+    <link type="text/css" rel="stylesheet" href="../css/topcoat/css/topcoat-desktop-dark.css" />
+    <!-- Impulse js -->
+    <script type="text/javascript" async src="../lib/impulsejs/impulse.js"></script>
+    
+    <!-- Inline CSS -->
+    <style>
+        body {
+          margin: 0;
+          background-color: #ccc;
+          font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        .nav-header {
+          position: fixed;
+          z-index: 5;
+          top: 0;
+          height: 50px;
+          left: 0;
+          right: 0;
+          background-color: white;
+          /** CHROME BUG: if this isn't a render layer, we
+          can't touch it after we've touched it once :-S **/
+          -webkit-transform: translateZ(0);
+          box-shadow: 0 0 3px 2px rgba(0, 0, 0, .1);
+        }
+
+        .hamburger-menu-handle {
+          position: absolute;
+          right: 20px;
+          top: 10px;
+          padding-left: 1.25em;
+        }
+
+        .hamburger-menu-handle:before {
+          content: "";
+          position: absolute;
+          font-size: 28px;
+          top: 0.25em;
+          left: 0;
+          width: 1em;
+          height: 0.125em;
+          border-top: 0.375em double #FF2A68;
+          border-bottom: 0.125em solid #FF2A68;
+        }
+
+        .pull-down-menu {
+          position: fixed;
+          top: -100%;
+          left: 0;
+          bottom: 100%;
+          padding-top: 50px;
+          right: 0;
+          z-index: 4;
+          background-color: #fafafa;
+        }
+
+        a:link, a:visited {
+          text-decoration: none;
+          color: #FF2A68;
+        }
+
+        a:active {
+          background-color: #FF2A68;
+          color: #fafafa;
+        }
+
+        .links a {
+          display: block;
+          height: 50px;
+          line-height: 50px;
+          font-size: 20;
+          text-align: center;
+          font-size: 20px;
+          border-bottom: 1px solid #ededed;
+          transition: background-color 0.3s, color 0.3s;
+        }
+
+
+        .close-handle {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 20px;
+          background-color: #fafafa;
+        }
+
+        .arrow-left, .arrow-right {
+          background-color: #ccc;
+          height: 8px;
+          width: 24px;
+          border-radius: 10px;
+          position: absolute;
+          left: 50%;
+          transition: transform .2s;
+        }
+
+        .arrow-left {
+          transform: translate3d(-8px, 0, 0) rotate(0deg);
+        }
+
+        .arrow-right {
+          transform: translateX3d(8px, 0, 0) rotate(0deg);
+        }
+
+        .open .arrow-left {
+          transform: translate3d(-8px, 0, 0) rotate(-10deg);
+        }
+
+        .open .arrow-right {
+          transform: translate3d(8px, 0, 0) rotate(10deg);
+        }
+
+        .content {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        } 
+    </style>
+    </head>
+<body>
+    <div class="nav-header">
+        <div class="hamburger-menu-handle"></div>
+      </div>
+      <div class="pull-down-menu">
+        <div class="links">
+           <a href="#">a link</a>
+           <a href="#">another link</a>
+           <a href="#">hamburgers</a>
+           <a href="#">w00tbear</a>
+        </div>
+        <div class="close-handle"><div class="arrow-left"></div><div class="arrow-right"></div></div>
+      </div>
+      <div class="content"></div> 
+<!-- Inline JS -->
+<script type="text/javascript">
+        var menuEl = document.querySelector('.pull-down-menu')
+        var handleEls = document.querySelectorAll('.nav-header, .close-handle')
+        var isOpen = false
+        var boundary = new Impulse.boundary({ top: 0, bottom: window.innerHeight, left: 0, right: 0 })
+
+        var menu = new Impulse(menuEl)
+          .style('translateY', function(x, y) { return y + 'px' })
+
+        var drag = menu.drag({ handle: handleEls, boundary: boundary, direction: 'vertical' })
+
+        function end() {
+          if(this.moved()) {
+            isOpen = menu.direction('down')
+          } else {
+            isOpen = !isOpen
+            if(isOpen) {
+              menu.velocity(0, 2000)
+            }
+          }
+
+          if(isOpen) {
+            menuEl.classList.add('open')
+            menu.accelerate({ acceleration: 1500, bounceAcceleration: 4000, bounce: this.moved() })
+              .to(0, boundary.bottom).start()
+              .then(function() {
+              })
+          } else {
+            menuEl.classList.remove('open')
+            menu.spring({ tension: 100, damping: 15 })
+              .to(0, boundary.top).start()
+          }
+        }
+
+        drag.on('end', end)
+    </script>
+    <!-- End Inline JS -->
+  </body>
+</html>

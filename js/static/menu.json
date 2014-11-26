@@ -1,0 +1,11 @@
+{
+    "menu": {
+        "position": "vertical",
+        "items": [
+            "home",
+            "page",
+            "about",
+            "llinks"
+        ]
+    }
+}

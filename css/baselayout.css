@@ -1,0 +1,131 @@
+.main-body {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-flex-direction:column;
+  flex-direction: column;
+  min-height: 100%;
+
+}
+
+ .main-container {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-flex-direction:column;
+  flex-direction: column;
+}
+
+ .content {
+  margin: 1.5em 0;
+}
+
+ .vnav {
+  -webkit-order:-1;
+  order: -1;
+}
+
+
+
+ .vnav,  .ads {
+  padding: 1em;
+  border-radius: 3px;
+  background: hsla(31, 15%, 50%, 0.1);
+}
+
+@include breakpoint("large") {
+   .main-container {
+    -webkit-box-orient:horizontal;
+    -webkit-flex:1;
+    flex-direction: row;
+    flex: 1;
+
+    /* stupid IE10 tweener syntax */
+    -ms-flex-preferred-size: auto;
+  }
+   .content {
+    // flex: 1;
+    // the `flex` rule above should be applied but it's causing
+    // problems in IE10 and IE11. Not specifying a `flex` property
+    // and using the `-ms-flex` property here seems to make it
+    // work in all browsers for whatever reason
+    -ms-flex: 1 1 auto;
+
+    padding: 0 1.5em;
+    margin: 0;
+  }
+
+   .vnav,  .ads {
+    -webkit-flex:0 0 100px;
+    flex: 0 0 12em;
+  }
+}
+/*No Smartphone settings. It'll all stack by default*/
+
+/* Tablet version */
+@media (min-width: 768px) {
+  .main-container{
+    -webkit-flex-direction:row;
+    -webkit-flex:1;
+    -webkit-flex-wrap:wrap;
+    flex-direction:row;
+    flex:1;
+    flex-wrap:wrap;
+  }
+
+   .content{
+    -webkit-flex:1;
+    flex:1;
+  }
+
+   .vnav{
+    -webkit-flex: 0 0 100px;
+    flex: 0 0 12em;
+  }
+
+  .hnav {
+    -webkit-order:-2;
+    -order: -2;
+  }
+
+
+   .ads {
+    -webkit-flex:0 0 100%;
+    flex:0 0 100%;
+  }
+
+}
+
+/* Desktop version */
+@media (min-width: 960px) {
+   .main-container {
+    -webkit-flex-direction:row;
+    -webkit-flex: 1;
+    flex-direction: row;
+    flex: 1;
+  }
+
+   .content {
+    -webkit-flex: 1;
+    flex: 1;
+  }
+
+   .vnav,  .ads{
+    /* 12em is the width of the columns */
+    -moz-box-flex: 0 0 100px;
+    -webkit-flex: 0 0 100px;
+    flex: 0 0 12em;
+  }
+
+  .hnav {
+    -moz-box-ordinal-group:-2;
+    -webkit-order:-2;
+    -order: -2;
+  }
+
+
+}

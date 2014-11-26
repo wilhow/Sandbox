@@ -1,0 +1,9 @@
+/*No Smartphone settings. It'll all stack by default*/
+
+/* Tablet version */
+@media (min-width: 768px) {
+}
+
+/* Desktop version */
+@media (min-width: 960px) {
+}
