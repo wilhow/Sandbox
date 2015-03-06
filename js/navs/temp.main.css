@@ -15,13 +15,13 @@ nav a:link,nav a:visited {
     color: #ff2a68;
 }
 
-nav .links {
+nav .hlinks, nav .vlinks{
     position: absolute;
     right: 40px;
     top: 20px;
 }
 
-nav .links a {
+nav .hlinks a, nav .vlinks a {
     margin-left: 40px;
     padding: 10px 20px;
 }

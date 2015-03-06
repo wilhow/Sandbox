@@ -8,12 +8,12 @@ body {
   box-sizing: border-box;
 }
 
-.nav-header {
+.vert-header, .horz-header {
   position: fixed;
   z-index: 5;
   top: 0;
   height: 50px;
-  left: 0;
+  width:50px;
   right: 0;
   background-color: white;
   /** CHROME BUG: if this isn't a render layer, we
@@ -41,7 +41,18 @@ body {
   border-bottom: 0.125em solid #FF2A68;
 }
 
-.pull-down-menu {
+.pull-down-menu { /* horizontal menu*/
+  position: fixed;
+  top: -100%;
+  left: 0;
+  bottom: 100%;
+  padding-top: 50px;
+  right: 0;
+  z-index: 4;
+  background-color: #fafafa;
+}
+
+.vpull-down-menu { /*Vertical Menu*/
   position: fixed;
   top: -100%;
   left: 0;
@@ -62,7 +73,7 @@ a:active {
   color: #fafafa;
 }
 
-.links a {
+.hlinks a, .vlinks a {
   display: block;
   height: 50px;
   line-height: 50px;
@@ -74,7 +85,7 @@ a:active {
 }
 
 
-.close-handle {
+.vclose-handle, .hclose-handle {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -108,44 +119,55 @@ a:active {
 .open .arrow-right {
   transform: translate3d(8px, 0, 0) rotate(10deg);
 }
-/*
-.content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-} */
 /*No Smartphone settings. It'll all stack by default*/
 
 /* Tablet version */
 @media (min-width: 768px) {
-  .nav-header, .close-handle {
+  .nav-header, .vclose-handle , .hclose-handle{
     display: none;
     visibility: hidden;  
   }
 
-  .pull-down-menu {
+  .pull-down-menu, .vpull-down-menu {
     position: relative;
     left: 0px;
   }
+  
+  .vpull-down-menu {
+	padding-top:0px;
+  }
+  
+  
   /*Top Menu*/
 
-  .links {
+  .hlinks {
     position:absolute;
     right:10px;
     top:0px; 
 
   }
-  .links a {
+  
+  .hlinks a {
     float:left;
     margin-left:30px;
+  }
+  
+  .vlinks a {
+	margin-left:30px;
+	float:none;
   }
 }
 
 /* Desktop version */
 @media (min-width: 960px) {
-  .links {
+  .hlinks {
     right:50px;
+  }
+  
+  .vlinks a {
+	float:none;
+  }
+  .vpull-down-menu {
+	padding-top:0px;
   }
 }

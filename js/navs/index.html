@@ -12,7 +12,7 @@
     <meta name="description" content="A showcase of problems once hard or impossible to solve with CSS alone, now made trivially easy with Flexbox.">
 
     <!-- must haves-->
-    <link rel="stylesheet" href="../../css/prototyping.css" />
+    <link rel="stylesheet" href="../../css/prototyping.css" /><!-- Box -->
     <link rel="stylesheet" href="../../css/pocketgrid.css" />
     <link rel="stylesheet" href="../../css/baselayout.css" />
     <script src="../../lib/jquery/1.11.1/jquery.min.js"></script>
@@ -21,28 +21,45 @@
 
   <body class="main-body">
     <div class="main-container block">
-      <div class="content block"><div>This is primary  home with blank slate</div></div>
+      <div class="content block"><div>This is primary home with blank slate</div></div>
       <div class="vnav block">
-          <div class="box">Page Nav</div>
+          <div class="box">
+			  <div class="vert-header nav-header" style="left:0;"> <!-- Why is there a left:0 here!!?? -->
+				<div class="hamburger-menu-handle"></div><!-- Desktop: Hidden, Mobile: Visible-->
+			  </div>
+			  <div class="vpull-down-menu">
+				<div class="vlinks">
+				   <a href="#">vertical a link</a>
+				   <a href="#">vertical another link</a>
+				   <a href="#">vertical hamburgers</a>
+				   <a href="#">vertical w00tbear</a>
+				</div>
+				<div class="vclose-handle"><!--What is this for -->
+				  <div class="arrow-left"></div>
+				  <div class="arrow-right"></div>
+				</div>
+			  </div>
+		  </div>
       </div>
       <div class="ads block"><div class="box">Links</div></div>
       <div class="hnav block">
-        <div class="nav-header">
-            <div class="hamburger-menu-handle"></div>
-          </div>
-          <div class="pull-down-menu">
-            <div class="links">
-               <a href="#">a link</a>
-               <a href="#">another link</a>
-               <a href="#">hamburgers</a>
-               <a href="#">w00tbear</a>
-            </div>
-            <div class="close-handle"><!--What is this for -->
-              <div class="arrow-left"></div>
-              <div class="arrow-right"></div>
-            </div>
-          </div>
-      </div>
+          <div class="box">App Nav
+			  <div class="horz-header nav-header">
+				<div class="hamburger-menu-handle"></div><!-- Desktop: Hidden, Mobile: Visible-->
+			  </div>
+			  <div class="pull-down-menu">
+				<div class="hlinks">
+				   <a href="#">Horizontal a link</a>
+				   <a href="#">Horizontal another link</a>
+				   <a href="#">Horizontal hamburgers</a>
+				   <a href="#">Horizontal w00tbear</a>
+				</div>
+				<div class="hclose-handle"><!--What is this for -->
+				  <div class="arrow-left"></div>
+				  <div class="arrow-right"></div>
+				</div>
+			  </div>
+		  </div>
     </div>
     <div class="footer block"><div class="box">Footer</div></div>
     <!-- For IE6-8 Media Queries compatibility -->
