@@ -21,7 +21,7 @@ var vDrag = vMenu.drag({ handle: vHandleEls, boundary: vBoundry, direction: 'ver
 
   if(isOpen) {
     vMenuEl.classList.add('open')
-	vMenu.accelerate({ acceleration: 1500, bounceAcceleration: 4000, bounce: true })
+	vMenu.accelerate({ acceleration: 1500, bounceAcceleration: 4000, bounce: false })
       .to(0, vBoundry.bottom).start()
       .then(function() {
       })
